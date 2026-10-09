@@ -1,0 +1,18 @@
+{
+  "name": "ui-design-prompts",
+  "owner": {
+    "name": "UI Atlas",
+    "url": "https://ui.ddct.top"
+  },
+  "metadata": {
+    "description": "Free production-grade UI design prompts from UI Atlas, as Claude Code skills, Cursor rules and AGENTS.md.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "ui-design-prompts",
+      "source": "./",
+      "description": "Free production-grade UI design prompts from UI Atlas, as Claude Code skills, Cursor rules and AGENTS.md."
+    }
+  ]
+}

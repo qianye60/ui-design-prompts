@@ -1,0 +1,221 @@
+---
+name: ui-soft-clay-fintech
+description: "Design system for the 'Soft Clay' UI style — Claymorphism × pastel candy colors, a playful fintech app landing page. Use when building or restyling web pages, landing pages or UI components in this style, or when the user mentions: Light, Playful, Claymorphism, Pastel, Mobile App."
+---
+
+# Soft Clay
+
+This skill contains a complete, production-grade UI style specification from UI Atlas
+(https://ui.ddct.top/p/soft-clay-fintech).
+
+## How to use
+
+1. Read the full specification below before writing any UI code.
+2. Implement the design tokens in section 2 exactly — they are the single source of truth.
+3. Apply the style to the user's own product, content and framework; never reuse the demo copy verbatim.
+4. A reference implementation is bundled in `assets/demo.html`; open it to check proportions and motion.
+
+---
+
+# Soft Clay — Playful Fintech App Landing Page
+
+You are a senior brand & product designer known for friendly, tactile consumer apps, and a front-end engineer who can model
+"clay" depth with layered CSS shadows. Build the marketing landing page for a fictional micro-savings app called
+**"Pebble"** in the **Soft Clay** style described below. Every value is a specification, not a suggestion.
+
+## 1. Design Intent
+
+Soft, optimistic, squeezable — like pastel modelling clay arranged on a warm kitchen table. Money is usually presented as
+cold and serious; this page makes it feel like play without losing trust. Surfaces look slightly puffy: generous radii,
+a white top highlight, a faint inner shadow at the bottom and a long, lilac-tinted drop shadow. Pastel peach, lilac, mint
+and butter are used as large calm fields; a saturated grape violet is the only "serious" color, reserved for actions.
+
+Signature details (must be present):
+- A **CSS-only phone mockup** that floats (7s ease-in-out loop) with a violet balance card, three savings goals drawn as
+  conic-gradient progress rings, plus floating clay chips ("+$0.60 round-up") and glossy 3D-ish coins orbiting it.
+- The hero headline's last word sits on a **tilted peach highlighter stroke** (`rotate(-1.5deg)` pseudo-element).
+- An **interactive savings calculator** with chunky clay range sliders whose filled track follows the thumb.
+
+## 2. Design Tokens
+
+```css
+:root {
+  /* color */
+  --bg: #FBF6F0;            /* warm cream */
+  --surface: #FFFFFF;
+  --surface-2: #F5EEE6;
+  --border: rgb(43 33 64 / .08);
+  --text: #2B2140;          /* aubergine ink */
+  --text-muted: #6E6585;
+  --accent: #6C4BF4;        /* grape */
+  --accent-deep: #5233D6;
+  --accent-contrast: #FFFFFF;
+  --peach: #FFC9AE;
+  --lilac: #D8CFFF;
+  --mint: #BFEBD6;
+  --butter: #FFE9A8;
+  --sky: #C7E3FF;
+  /* type */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --fs-display: clamp(44px, 6.4vw, 88px);
+  --fs-h2: clamp(34px, 4.2vw, 56px);
+  --fs-h3: 22px;
+  --fs-body-l: 19px;
+  --fs-body: 16px;
+  --fs-small: 14px;
+  --fs-micro: 12px;
+  /* space */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 136px;
+  --container: 1180px;
+  --section-y: clamp(80px, 10vw, 136px);
+  /* shape */
+  --radius-sm: 14px; --radius-md: 20px; --radius-lg: 28px; --radius-xl: 40px; --radius-pill: 999px;
+  /* clay elevation */
+  --clay: 0 1px 0 #fff inset, 0 -6px 14px rgb(43 33 64/.05) inset, 0 18px 36px -14px rgb(108 75 244/.28), 0 6px 14px -6px rgb(43 33 64/.12);
+  --clay-sm: 0 1px 0 #fff inset, 0 -3px 8px rgb(43 33 64/.05) inset, 0 10px 20px -10px rgb(108 75 244/.3), 0 3px 6px -3px rgb(43 33 64/.14);
+  --clay-pressed: 0 2px 6px rgb(43 33 64/.12) inset, 0 1px 0 #fff;
+  /* motion */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --dur-fast: 160ms; --dur-base: 300ms; --dur-slow: 800ms;
+}
+```
+
+## 3. Typography
+
+- Google Fonts: Bricolage Grotesque (opsz 12–96, weights 500/700/800) for display; Plus Jakarta Sans 400–700 for UI.
+
+| Role | Size | LH | Tracking | Weight | Notes |
+| --- | --- | --- | --- | --- | --- |
+| Display | var(--fs-display) | .98 | -0.035em | 800 | opsz 96; last word highlighted |
+| H2 | var(--fs-h2) | 1.02 | -0.035em | 800 | centered section heads |
+| H3 | 22px | 1.25 | -0.02em | 800 | card titles |
+| Body L | 19px | 1.6 | 0 | 400 | muted, 44ch |
+| Body | 16px | 1.6 | 0 | 400 | |
+| Button | 16px (15px small) | 1 | 0 | 700 | |
+| Eyebrow | 13px | 1 | +0.08em | 700 | uppercase, --accent |
+
+- Big numbers (balance, calculator result) use the display face at 800 with `tabular-nums`.
+- Emoji are allowed as tiny icon glyphs inside clay tiles (☕ 🎯 🌱), never inline in headings.
+
+## 4. Color & Material
+
+- Ratio: 55% cream background, 25% white clay surfaces, 15% pastel fields, 5% grape.
+- **Clay recipe** (all cards, nav, chips): white surface + `--clay` (top white inset highlight, soft bottom inner shadow,
+  long lilac drop shadow, short contact shadow). Small elements use `--clay-sm`; pressed states use `--clay-pressed`.
+- **Primary button**: vertical gradient #7C5CFF → --accent, white top inset line (35%), dark bottom inset (-3px, 15%),
+  violet glow below. Pressed: inset shadow, moves down 1px.
+- Pastel cards (testimonials, step icons, calculator wrapper) use pastel backgrounds with the same clay shadow.
+- Decorative blobs: flat pastel circles with `filter: blur(2px)` behind the phone.
+- Coins: radial gradient #FFF6CF → #FFD95A → #F2B705, bottom inset #D99A00 rim, warm shadow.
+- One dark inverted block (the final CTA, background --text) with pastel bubbles bleeding off the corners.
+
+## 5. Layout & Grid
+
+- Container `min(1180px, 100% - 40px)`.
+- Hero: 2 columns 1.05fr / .95fr, 48px gap, vertically centered. Phone stage 620px tall.
+- Section heads centered, max-width 720px, 64px below.
+- Steps & testimonials: 3 equal columns, 24px gap. Calculator: 2 columns inside a lilac 40px-radius tray with 24px padding.
+- Vertical rhythm: `--section-y` between sections (top padding removed where sections follow each other closely).
+
+## 6. Page Blueprint
+
+### 6.1 Navigation
+A 72px clay pill (radius pill, 16px from the top). Logo: 30px pebble shape (`border-radius: 50% 50% 50% 14px`, violet
+gradient with a white specular dot) + "pebble" lowercase in display 800 22px. Links (How it works, Calculator, Reviews,
+Security) are pill-shaped with --surface-2 hover. Right: soft "Log in" + primary "Get the app" (44px).
+
+### 6.2 Hero
+Left: mint clay badge "🌱 4.10% APY on every pebble" (white circular icon inside); H1 "Saving that feels like *play.*" with
+the peach highlight on "play."; lede; CTA pair (primary "Start saving — it's free →", soft "See how it works"); social proof
+row: four overlapping 36px pastel avatar circles with 3px cream borders + "★★★★★ Loved by 1.2M savers".
+Right: the phone stage — a 420px lilac blob, a peach blob top-left, a mint blob bottom-right; a 300×600 white phone
+(radius 52px, 14px bezel) containing: notch, greeting row, violet gradient balance card ($4,862.40, "+$38.20 this week",
+three translucent quick-action pills), three goal rows with conic rings (Lisbon trip 72% violet, New bike 45% green,
+Rainy day 88% orange). Around it: two floating clay chips with pastel icon tiles and two coins ($ and ¢).
+
+### 6.3 How it works
+Centered head ("Three taps to a softer future."). Three clay step cards: 84px pastel icon tile (radius 28px, puffy inner
+shadows) holding a simple flat SVG (card, clock, star), a faded "01/02/03" in the corner, title and muted text.
+Hover: lift 6px and rotate -0.6deg with the spring easing.
+
+### 6.4 Savings calculator
+Lilac tray containing: left white clay panel with eyebrow, H2 "How big can your pebbles get?", two labeled range sliders
+(purchases per week 3–40, months 1–36) with live `<output>` values; right side shows "You could save about" and a huge
+grape number (`clamp(56px, 7vw, 88px)`) computed live (average round-up $0.50, 4.33 weeks/month, 4.10% APY compounded
+monthly), announced via `aria-live="polite"`, plus a fine-print note.
+
+### 6.5 Reviews
+Three pastel clay cards (peach, mint, butter) with a 19px 600 quote, then a 40px white clay avatar circle, name and a muted
+detail line.
+
+### 6.6 Final CTA
+Dark aubergine block (radius 40px) with three pastel bubbles bleeding off its edges, white H2 "Your first pebble is on us.",
+muted lavender copy, and two white store buttons (56px, radius 18px, small caption line above the store name).
+
+### 6.7 Footer
+Simple row: copyright left, regulatory note right, 14px muted.
+
+## 7. Components
+
+| Component | Spec | States |
+| --- | --- | --- |
+| Primary button | 52px (44px small), padding 0 26px, radius pill, gradient grape, white 700 | hover: translateY(-2px) with spring; active: translateY(1px) scale(.98) + inset shadow; focus-visible: 3px grape outline offset 3px |
+| Soft button | white + --clay-sm, --text | active: --clay-pressed |
+| Clay card | white, radius 28px, --clay, padding 32px | hover (steps): lift + slight rotate |
+| Badge | 36px, radius pill, mint, --clay-sm | — |
+| Chip | radius 20px, white, --clay, 32px icon tile radius 12px | floats on a 6s loop |
+| Range slider | track 14px radius 99px, filled with grape up to the thumb (`--v` custom property); thumb 30px white clay with a 6px violet halo | active thumb: scale(1.15) |
+| Goal ring | 44px conic gradient (`--p` percent, `--c` color) with a 32px white center | — |
+| Store button | 56px, radius 18px, white, bottom inset shadow | hover: lift 3px |
+
+## 8. Motion & Interaction
+
+- Reveal (`.pop`): `opacity 0, translateY(24px) scale(.97)` → rest; opacity uses --ease-out, transform uses --ease-spring
+  (slight overshoot), 800ms, staggered 90ms.
+- Ambient: phone float (7s), chips float (6s, offset delays), coins bob and tilt 14° (9s).
+- Buttons and cards use spring easing for hover lifts; nothing moves faster than 160ms.
+- Calculator updates instantly on `input`.
+- Reduced motion: no floating loops, no transitions; reveals render immediately.
+
+## 9. Responsive Behavior
+
+- ≤980px: hero stacks and centers (phone below text), nav links hidden, steps / reviews / calculator become single column.
+- ≤560px: phone stage scales to .9 and 560px tall; floating chips hidden; nav "Log in" hidden.
+- Display type clamps down to 44px; buttons keep ≥ 44px height.
+
+## 10. Accessibility
+
+- --text on cream is 13.9:1; --text-muted on cream is 5.3:1; white on grape is 6.2:1.
+- Text on pastel cards always uses --text (never white).
+- Decorative stage, blobs, coins and avatars are `aria-hidden`.
+- Sliders have associated `<label>`s and live `<output>`s; the result uses `aria-live="polite"`.
+- Star rating has an `aria-label` ("4.9 out of 5"). Visible 3px focus outlines everywhere.
+
+## 11. Do / Don't
+
+Do:
+- Make every surface feel puffy: big radius + inner highlight + soft long shadow.
+- Use pastels as large calm fields and grape only for actions and key numbers.
+- Animate with springs that overshoot slightly — it should feel bouncy, not jittery.
+- Keep copy warm, short and specific (real-feeling amounts and goals).
+- Build all illustrations from CSS shapes and simple flat SVG.
+- Keep text dark on pastel backgrounds.
+
+Don't:
+- Don't use hard 1px borders or sharp corners (< 14px radius) anywhere.
+- Don't use pure black or neon colors; don't use gradients on pastel cards.
+- Don't add photography or stock 3D renders.
+- Don't use more than one saturated color.
+- Don't let shadows go grey — tint them with violet.
+- Don't make it look childish: keep typography confident and layouts aligned.
+
+## 12. Output Requirements
+
+- Deliver a single self-contained `index.html` with one `<style>` and one `<script>` (reveal observer + calculator).
+- Fictional brand "Pebble"; no real bank or app-store logos (use simple glyphs); no lorem ipsum.
+- No external images; everything is CSS, inline SVG or emoji glyphs.
+- Self-check: clay recipe applied consistently, all button states implemented, calculator math correct, verified at
+  390 / 768 / 1440px, reduced motion respected, no horizontal scroll.
